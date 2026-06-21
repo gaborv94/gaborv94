@@ -1,0 +1,36 @@
+{
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "server": "node server/index.js",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "vite": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-router-dom": "latest",
+    "bootstrap": "latest",
+    "chart.js": "latest",
+    "react-chartjs-2": "latest",
+    "express": "latest",
+    "cors": "latest",
+    "better-sqlite3": "latest"
+  },
+  "devDependencies": {
+    "eslint": "latest",
+    "@eslint/js": "latest",
+    "eslint-plugin-react-hooks": "latest",
+    "eslint-plugin-react-refresh": "latest",
+    "globals": "latest"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "private": true,
+  "version": "1.0.0",
+  "name": "fittrainer",
+  "type": "module"
+}

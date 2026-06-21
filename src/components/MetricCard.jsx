@@ -1,0 +1,1 @@
+export default function MetricCard({title,value,subtitle}){return <div className="card metric h-100"><div className="card-body"><span className="text-uppercase small text-orange">{title}</span><h3 className="mt-2 mb-1">{value}</h3><p className="text-secondary mb-0">{subtitle}</p></div></div>}
