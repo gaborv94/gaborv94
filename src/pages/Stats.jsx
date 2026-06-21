@@ -1,2 +1,22 @@
-import { Line, Bar } from 'react-chartjs-2';import{Chart as ChartJS,CategoryScale,LinearScale,PointElement,LineElement,BarElement,Tooltip,Legend}from'chart.js';import { useApp } from '../context/AppContext';ChartJS.register(CategoryScale,LinearScale,PointElement,LineElement,BarElement,Tooltip,Legend);
-export default function Stats(){const{bodyLogs,workouts}=useApp();const labels=bodyLogs.map(x=>x.date);return <><h1>Estadísticas</h1><div className="row g-3"><div className="col-lg-6"><div className="card"><div className="card-body"><h4>Mensual: peso e IMC</h4><Line data={{labels,datasets:[{label:'Peso',data:bodyLogs.map(x=>x.weight),borderColor:'#ff8a00'},{label:'Cintura',data:bodyLogs.map(x=>x.waist),borderColor:'#4dabf7'}]}}/></div></div></div><div className="col-lg-6"><div className="card"><div className="card-body"><h4>Semanal: calorías y tiempo</h4><Bar data={{labels:workouts.map(x=>x.date),datasets:[{label:'Calorías',data:workouts.map(x=>x.calories),backgroundColor:'#ff8a00'},{label:'Minutos',data:workouts.map(x=>x.duration),backgroundColor:'#1c7ed6'}]}}/></div></div></div><div className="col-12"><div className="card"><div className="card-body"><h4>Corporales</h4><Line data={{labels,datasets:['chest','arm','thigh','hip'].map((k,i)=>({label:k,data:bodyLogs.map(x=>x[k]),borderColor:['#ff8a00','#74c0fc','#51cf66','#f06595'][i]}))}}/></div></div></div></div></>}
+import { BodyChart, WeightChart, WorkoutChart } from '../charts/ProgressCharts';
+import { useApp } from '../context/AppContext';
+
+export default function Stats() {
+  const { bodyLogs, workouts } = useApp();
+  return (
+    <>
+      <h1>Estadísticas</h1>
+      <div className="row g-3">
+        <div className="col-lg-6">
+          <div className="card h-100"><div className="card-body"><h4>Mensual: evolución de peso</h4><WeightChart bodyLogs={bodyLogs} /></div></div>
+        </div>
+        <div className="col-lg-6">
+          <div className="card h-100"><div className="card-body"><h4>Semanal: calorías y tiempo</h4><WorkoutChart workouts={workouts} /></div></div>
+        </div>
+        <div className="col-12">
+          <div className="card"><div className="card-body"><h4>Corporales: cintura, pecho, brazos y muslos</h4><BodyChart bodyLogs={bodyLogs} /></div></div>
+        </div>
+      </div>
+    </>
+  );
+}

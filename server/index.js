@@ -1,8 +1,27 @@
-import express from 'express';import cors from 'cors';
-const app=express();app.use(cors());app.use(express.json());
-const db={users:[],bodyLogs:[],workouts:[]};
-app.get('/api/health',(_,res)=>res.json({status:'ok',database:'sqlite-ready',future:['mysql','postgresql']}));
-app.get('/api/routines',(_,res)=>res.json({message:'Routines are served by frontend seed data and can move to DB later.'}));
-app.post('/api/users',(req,res)=>{db.users.push(req.body);res.status(201).json(req.body)});
-app.post('/api/workouts',(req,res)=>{db.workouts.push(req.body);res.status(201).json(req.body)});
-app.listen(process.env.PORT||3000,()=>console.log('FitTrainer API running'));
+import cors from 'cors';
+import express from 'express';
+import { createBodyLog, createUser, createWorkout } from './database.js';
+
+const app = express();
+const port = process.env.PORT || 3000;
+
+app.use(cors());
+app.use(express.json());
+
+app.get('/api/health', (_request, response) => {
+  response.json({ status: 'ok', database: 'sqlite', futureAdapters: ['mysql', 'postgresql'] });
+});
+
+app.post('/api/users', (request, response) => {
+  response.status(201).json(createUser(request.body));
+});
+
+app.post('/api/body-logs', (request, response) => {
+  response.status(201).json(createBodyLog(request.body));
+});
+
+app.post('/api/workouts', (request, response) => {
+  response.status(201).json(createWorkout(request.body));
+});
+
+app.listen(port, () => console.log(`FitTrainer API running on ${port}`));

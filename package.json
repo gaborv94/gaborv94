@@ -1,4 +1,9 @@
 {
+  "name": "fittrainer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
@@ -25,12 +30,5 @@
     "eslint-plugin-react-hooks": "latest",
     "eslint-plugin-react-refresh": "latest",
     "globals": "latest"
-  },
-  "engines": {
-    "node": ">=20"
-  },
-  "private": true,
-  "version": "1.0.0",
-  "name": "fittrainer",
-  "type": "module"
+  }
 }

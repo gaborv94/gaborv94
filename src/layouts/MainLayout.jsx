@@ -1,3 +1,26 @@
 import { NavLink, Outlet } from 'react-router-dom';
-const links=[['/','Dashboard'],['/routines','Rutinas'],['/stats','Estadísticas'],['/goals','Metas'],['/history','Historial'],['/profile','Perfil']];
-export default function MainLayout(){return <div><nav className="navbar navbar-expand-lg navbar-dark sticky-top"><div className="container"><NavLink className="navbar-brand fw-bold" to="/">⚡ FitTrainer</NavLink><div className="nav flex-row gap-2">{links.map(([to,label])=><NavLink key={to} className="nav-link" to={to}>{label}</NavLink>)}</div></div></nav><main className="container py-4"><Outlet/></main></div>}
+
+const links = [
+  ['/', 'Dashboard'],
+  ['/routines', 'Rutinas'],
+  ['/stats', 'Estadísticas'],
+  ['/goals', 'Metas'],
+  ['/history', 'Historial'],
+  ['/profile', 'Perfil'],
+];
+
+export default function MainLayout() {
+  return (
+    <div>
+      <nav className="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div className="container">
+          <NavLink className="navbar-brand fw-bold" to="/">⚡ FitTrainer</NavLink>
+          <div className="nav flex-row gap-2" aria-label="Navegación principal">
+            {links.map(([to, label]) => <NavLink key={to} className="nav-link" to={to}>{label}</NavLink>)}
+          </div>
+        </div>
+      </nav>
+      <main className="container py-4"><Outlet /></main>
+    </div>
+  );
+}
